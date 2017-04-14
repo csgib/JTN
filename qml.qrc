@@ -1,8 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Page1.qml</file>
-        <file>Page1Form.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>UI/Welcome_new_user.qml</file>
+        <file>UI/FRM_Creator_list_quests.qml</file>
+        <file>UI/FRM_Edit_field.qml</file>
+        <file>UI/FRM_Quest_edit.qml</file>
+        <file>UI/FRM_Question.qml</file>
+        <file>UI/Quest_Item.qml</file>
     </qresource>
 </RCC>
