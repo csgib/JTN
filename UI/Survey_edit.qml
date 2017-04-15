@@ -11,8 +11,6 @@ Item {
         color: '#FFFFFF'
     }
 
-    id: item1
-
     TextInput{
         id: name_quest
         anchors.top: toolBar1.bottom

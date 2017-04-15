@@ -3,13 +3,11 @@
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>UI/Welcome_new_user.qml</file>
-        <file>UI/FRM_Creator_list_quests.qml</file>
-        <file>UI/FRM_Edit_field.qml</file>
-        <file>UI/FRM_Quest_edit.qml</file>
-        <file>UI/FRM_Question.qml</file>
         <file>UI/Quest_Item.qml</file>
         <file>PIXMAPS/workspace.png</file>
         <file>main.cpp</file>
         <file>UI/Choose_profil.qml</file>
+        <file>UI/Survey_list.qml</file>
+        <file>UI/Survey_edit.qml</file>
     </qresource>
 </RCC>

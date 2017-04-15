@@ -61,7 +61,13 @@ Item {
         width: applicationwindow.width - 20
 
         onClicked: {
+            show_survey_list()
         }
+    }
+
+    function show_survey_list(){
+        choose_profil.visible = false
+        survey_list.visible = true
     }
 }
 

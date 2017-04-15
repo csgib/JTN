@@ -13,7 +13,7 @@ ApplicationWindow {
     title: qsTr("JTN - Just To Know")
 
     property string wg_full_name
-
+    property int wg_current_quest_id
 
     Welcome_new_user{
         id: welcome_new_user
@@ -25,6 +25,22 @@ ApplicationWindow {
 
     Choose_profil{
         id: choose_profil
+        anchors.fill: parent
+        x: 0
+        y: 0
+        visible: false
+    }
+
+    Survey_list{
+        id: survey_list
+        anchors.fill: parent
+        x: 0
+        y: 0
+        visible: false
+    }
+
+    Survey_edit{
+        id: survey_edit
         anchors.fill: parent
         x: 0
         y: 0

@@ -638,12 +638,10 @@ qrc_qml.cpp: ../qml.qrc \
 		../main.qml \
 		../PIXMAPS/workspace.png \
 		../UI/Quest_Item.qml \
-		../UI/FRM_Creator_list_quests.qml \
-		../UI/FRM_Question.qml \
-		../UI/FRM_Quest_edit.qml \
+		../UI/Survey_edit.qml \
+		../UI/Survey_list.qml \
 		../UI/Welcome_new_user.qml \
-		../UI/Choose_profil.qml \
-		../UI/FRM_Edit_field.qml
+		../UI/Choose_profil.qml
 	/home/sgibault/Install/Qt/5.8/gcc_64/bin/rcc -name qml ../qml.qrc -o qrc_qml.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

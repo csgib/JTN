@@ -91,6 +91,8 @@ Item {
                 wg_current_quest_id = result.rows.item(0).QUESTS_ID
             }
         )
+
+        survey_edit.visible = true
     }
 
     function glob_reload_quest()
