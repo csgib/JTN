@@ -63,4 +63,20 @@ Item {
         y: applicationwindow.height - 170
         width: applicationwindow.width - 20
     }
+
+    Button {
+        id: button
+        text: qsTr("Valider")
+        background: Rectangle {
+            implicitWidth: 100
+            implicitHeight: 40
+            color: button.hovered ? "#d6d6d6" : "#f6f6f6"
+            border.color: "#26282a"
+            border.width: 1
+            radius: 4
+        }
+        x: 10
+        y: applicationwindow.height - 100
+        width: applicationwindow.width - 20
+    }
 }
