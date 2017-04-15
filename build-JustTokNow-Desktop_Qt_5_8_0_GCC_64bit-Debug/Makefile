@@ -51,7 +51,8 @@ OBJECTS_DIR   = ./
 SOURCES       = ../main.cpp qrc_qml.cpp
 OBJECTS       = main.o \
 		qrc_qml.o
-DIST          = ../../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
+DIST          = ../README \
+		../../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/common/unix.conf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/common/linux.conf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/common/sanitize.conf \
@@ -201,6 +202,7 @@ DIST          = ../../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf 
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		../.qmake.stash \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -381,6 +383,7 @@ Makefile: ../JustTokNow.pro ../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec
 		../../../Install/Qt/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Install/Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Install/Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Install/Qt/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Install/Qt/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -558,6 +561,7 @@ Makefile: ../JustTokNow.pro ../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec
 ../../../Install/Qt/5.8/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Install/Qt/5.8/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Install/Qt/5.8/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Install/Qt/5.8/gcc_64/mkspecs/features/toolchain.prf:
 ../../../Install/Qt/5.8/gcc_64/mkspecs/features/default_pre.prf:
@@ -629,13 +633,16 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_qml.cpp
 qrc_qml.cpp: ../qml.qrc \
 		../../../Install/Qt/5.8/gcc_64/bin/rcc \
-		../FRM_Creator_list_quests.qml \
-		../FRM_Question.qml \
-		../FRM_Quest_edit.qml \
+		../main.cpp \
 		../qtquickcontrols2.conf \
-		../FRM_Edit_field.qml \
 		../main.qml \
-		../UI/Welcome_new_user.qml
+		../PIXMAPS/workspace.png \
+		../UI/Quest_Item.qml \
+		../UI/FRM_Creator_list_quests.qml \
+		../UI/FRM_Question.qml \
+		../UI/FRM_Quest_edit.qml \
+		../UI/Welcome_new_user.qml \
+		../UI/FRM_Edit_field.qml
 	/home/sgibault/Install/Qt/5.8/gcc_64/bin/rcc -name qml ../qml.qrc -o qrc_qml.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

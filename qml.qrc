@@ -8,5 +8,7 @@
         <file>UI/FRM_Quest_edit.qml</file>
         <file>UI/FRM_Question.qml</file>
         <file>UI/Quest_Item.qml</file>
+        <file>PIXMAPS/workspace.png</file>
+        <file>main.cpp</file>
     </qresource>
 </RCC>

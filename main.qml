@@ -6,6 +6,7 @@ import "UI/"
 
 ApplicationWindow {
 
+    id: applicationwindow
     visible: true
     width: 480
     height: 640
