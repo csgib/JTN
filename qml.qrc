@@ -10,5 +10,6 @@
         <file>UI/Quest_Item.qml</file>
         <file>PIXMAPS/workspace.png</file>
         <file>main.cpp</file>
+        <file>UI/Choose_profil.qml</file>
     </qresource>
 </RCC>

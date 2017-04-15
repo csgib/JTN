@@ -1,5 +1,7 @@
 import QtQuick 2.0
+import QtQuick.Dialogs 1.2
 import QtQuick.Controls 2.1
+import QtQuick.LocalStorage 2.0
 
 Item {
     Rectangle{
@@ -7,17 +9,6 @@ Item {
         y: 0
         anchors.fill: parent
         color: "#000000"
-
-        TextInput {
-            id: textInput
-            x: 134
-            y: 310
-            width: 359
-            height: 16
-            color: "#ffffff"
-            text: qsTr("")
-            font.pixelSize: 12
-        }
     }
 
     Image {
@@ -37,6 +28,7 @@ Item {
     }
 
     TextField{
+        id: chp_first_name
         background: Rectangle {
             radius: 2
             border.color: "#333333"
@@ -51,6 +43,7 @@ Item {
     }
 
     TextField{
+        id: chp_last_name
         background: Rectangle {
             radius: 2
             border.color: "#333333"
@@ -65,12 +58,12 @@ Item {
     }
 
     Button {
-        id: button
+        id: button_valide_profil
         text: qsTr("Valider")
         background: Rectangle {
             implicitWidth: 100
             implicitHeight: 40
-            color: button.hovered ? "#d6d6d6" : "#f6f6f6"
+            color: button_valide_profil.hovered ? "#d6d6d6" : "#f6f6f6"
             border.color: "#26282a"
             border.width: 1
             radius: 4
@@ -78,5 +71,38 @@ Item {
         x: 10
         y: applicationwindow.height - 100
         width: applicationwindow.width - 20
+
+        onClicked: {
+            create_user()
+        }
+    }
+
+    MessageDialog {
+        id: new_user_error
+        visible: false
+        title: qsTr("Erreur")
+        text: qsTr("Vous devez renseigner votre nom et votre prénom pour continuer")
+    }
+
+    function create_user()
+    {
+        if ( chp_first_name.text == "" || chp_last_name == "" )
+        {
+            new_user_error.visible = true
+        }
+        else
+        {
+            var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database")
+
+            db.transaction(
+                function(tx) {
+                    tx.executeSql('INSERT INTO USERS VALUES(?, ?)', [ chp_first_name.text, chp_last_name.text ])
+                }
+            )
+
+            wg_full_name = chp_first_name.text + " " + chp_last_name.text
+            welcome_new_user.visible = false
+            choose_profil.visible = true
+        }
     }
 }

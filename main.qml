@@ -23,6 +23,14 @@ ApplicationWindow {
         visible: false
     }
 
+    Choose_profil{
+        id: choose_profil
+        anchors.fill: parent
+        x: 0
+        y: 0
+        visible: false
+    }
+
     function init_database() {
         var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database")
         var wl_record_users;
@@ -42,7 +50,8 @@ ApplicationWindow {
         }
         else
         {
-            wg_full_name = record_users.rows.item(0).USERS_FIRST_NAME + " " + record_users.rows.item(0).USERS_LAST_NAME
+            wg_full_name = wl_record_users.rows.item(0).USERS_FIRST_NAME + " " + wl_record_users.rows.item(0).USERS_LAST_NAME
+            choose_profil.visible = true
         }
 
     }
