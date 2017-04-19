@@ -52,6 +52,13 @@ SOURCES       = ../main.cpp qrc_qml.cpp
 OBJECTS       = main.o \
 		qrc_qml.o
 DIST          = ../README \
+		../android/AndroidManifest.xml \
+		../android/gradle/wrapper/gradle-wrapper.jar \
+		../android/gradlew \
+		../android/res/values/libs.xml \
+		../android/build.gradle \
+		../android/gradle/wrapper/gradle-wrapper.properties \
+		../android/gradlew.bat \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/common/unix.conf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/common/linux.conf \
@@ -636,11 +643,14 @@ qrc_qml.cpp: ../qml.qrc \
 		../main.cpp \
 		../qtquickcontrols2.conf \
 		../main.qml \
+		../PIXMAPS/edit.png \
+		../PIXMAPS/delete.png \
 		../PIXMAPS/workspace.png \
 		../UI/Quest_Item.qml \
 		../UI/Survey_edit.qml \
 		../UI/Survey_list.qml \
 		../UI/Welcome_new_user.qml \
+		../UI/Edit_field.qml \
 		../UI/Choose_profil.qml
 	/home/sgibault/Install/Qt/5.8/gcc_64/bin/rcc -name qml ../qml.qrc -o qrc_qml.cpp
 

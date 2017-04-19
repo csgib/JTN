@@ -9,5 +9,9 @@
         <file>UI/Choose_profil.qml</file>
         <file>UI/Survey_list.qml</file>
         <file>UI/Survey_edit.qml</file>
+        <file>PIXMAPS/delete.png</file>
+        <file>PIXMAPS/edit.png</file>
+        <file>UI/Edit_field.qml</file>
+        <file>PIXMAPS/close.png</file>
     </qresource>
 </RCC>

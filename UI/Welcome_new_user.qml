@@ -4,6 +4,15 @@ import QtQuick.Controls 2.1
 import QtQuick.LocalStorage 2.0
 
 Item {
+
+    Behavior on y {
+        NumberAnimation {
+            easing.amplitude: 0.5
+            duration: 1000
+            easing.type: Easing.OutBounce
+        }
+    }
+
     Rectangle{
         x: 0
         y: 0
@@ -101,8 +110,7 @@ Item {
             )
 
             wg_full_name = chp_first_name.text + " " + chp_last_name.text
-            welcome_new_user.visible = false
-            choose_profil.visible = true
+            welcome_new_user.y = applicationwindow.height
         }
     }
 }

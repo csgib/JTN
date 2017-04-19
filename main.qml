@@ -17,33 +17,48 @@ ApplicationWindow {
 
     Welcome_new_user{
         id: welcome_new_user
-        anchors.fill: parent
         x: 0
         y: 0
-        visible: false
+        width: applicationwindow.width
+        height: applicationwindow.height
+        z: 10
     }
 
     Choose_profil{
         id: choose_profil
-        anchors.fill: parent
         x: 0
         y: 0
-        visible: false
+        width: applicationwindow.width
+        height: applicationwindow.height
+        z: 9
     }
 
     Survey_list{
         id: survey_list
-        anchors.fill: parent
         x: 0
         y: 0
-        visible: false
+        width: applicationwindow.width
+        height: applicationwindow.height
+        z: 8
     }
 
     Survey_edit{
         id: survey_edit
-        anchors.fill: parent
         x: 0
         y: 0
+        width: applicationwindow.width
+        height: applicationwindow.height
+        z: 9
+        visible: false
+    }
+
+    Edit_field{
+        id: edit_field
+        x: 0
+        y: 0
+        width: applicationwindow.width
+        height: applicationwindow.height
+        z: 9
         visible: false
     }
 
@@ -66,8 +81,8 @@ ApplicationWindow {
         }
         else
         {
+            welcome_new_user.visible = false
             wg_full_name = wl_record_users.rows.item(0).USERS_FIRST_NAME + " " + wl_record_users.rows.item(0).USERS_LAST_NAME
-            choose_profil.visible = true
         }
 
     }

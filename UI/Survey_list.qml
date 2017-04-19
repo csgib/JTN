@@ -37,6 +37,25 @@ Item {
                 page1_edit.visible = true
             }
         }
+
+        ToolButton {
+            id: toolButton2
+            x: 12
+            y: 0
+            width: 84
+            height: 40
+            anchors.right: toolButton1.left
+            anchors.rightMargin: 10
+            enabled: true
+            autoExclusive: false
+            checked: false
+            checkable: false
+            highlighted: false
+            text: qsTr("Fermer")
+            onClicked: {
+                choose_profil.y = 0
+            }
+        }
     }
 
     ListView {
@@ -65,7 +84,7 @@ Item {
         }
     }
 
-    function load_database() {
+    function load_quests_database() {
         var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database");
 
         db.transaction(
@@ -97,19 +116,19 @@ Item {
 
     function glob_reload_quest()
     {
-        page1_edit.visible = true
-        page1_edit.reload_quest(mylq.get(wg_current_quest).questid)
+        survey_edit.visible = true
+        survey_edit.reload_quest(mylq.get(wg_current_quest).questid)
     }
 
     function rename_quest(wl_name)
     {
         listView1.model.clear()
-        load_database()
+        load_quests_database()
         //mylq.set(wg_current_quest).name = wl_name
         //mylq.setProperty(wg_current_quest, "name", wl_name)
         //listView1.contentItem.children[wg_current_quest].name = wl_name
     }
 
-    Component.onCompleted: load_database()
+    //Component.onCompleted: load_database()
 
 }

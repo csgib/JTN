@@ -1,8 +1,18 @@
 import QtQuick 2.0
 import QtQuick.Dialogs 1.2
 import QtQuick.Controls 2.1
+import QtGraphicalEffects 1.0
 
 Item {
+
+    Behavior on y {
+        NumberAnimation {
+            easing.amplitude: 0.5
+            duration: 1000
+            easing.type: Easing.OutBounce
+        }
+    }
+
     Rectangle{
         x: 0
         y: 0
@@ -66,8 +76,8 @@ Item {
     }
 
     function show_survey_list(){
-        choose_profil.visible = false
-        survey_list.visible = true
+            survey_list.load_quests_database()
+            choose_profil.y = applicationwindow.height
     }
 }
 

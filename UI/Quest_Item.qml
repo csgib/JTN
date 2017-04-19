@@ -11,7 +11,7 @@ Item {
         y: 0
         width: parent.width
         height: parent.height
-        color: "#555555"
+        color: "#EEEEEE"
 
         Image {
             id: image1
@@ -19,7 +19,7 @@ Item {
             y: 0
             width: parent.height
             height: parent.height
-            source: "publish_big.png"
+            source: "../PIXMAPS/delete.png"
             opacity: 1
         }
 
@@ -29,7 +29,7 @@ Item {
             y: 0
             width: parent.height
             height: parent.height
-            source: "edit_big.png"
+            source: "../PIXMAPS/edit.png"
             opacity: 1
 
             MouseArea{
@@ -93,8 +93,8 @@ Item {
     transitions: [
         Transition {
             NumberAnimation { properties: "x, y, width"
-                duration: 200
-                easing.type: Easing.InBack
+                duration: 600
+                easing.type: Easing.OutBounce
             }
         }
     ]

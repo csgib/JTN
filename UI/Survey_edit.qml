@@ -6,20 +6,27 @@ Item {
 
     property int wg_current_type
 
+
     Rectangle{
         anchors.fill: parent
         color: '#FFFFFF'
     }
 
-    TextInput{
+    TextField{
         id: name_quest
-        anchors.top: toolBar1.bottom
+        background: Rectangle {
+            radius: 2
+            border.color: "#333333"
+            border.width: 1
+            color: "black"
+        }
+        anchors.top: toolBar22.bottom
         anchors.topMargin: 6
         anchors.left: parent.left
         anchors.leftMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        text: qsTr("Entre un titre pour votre questionnaire ...")
+        placeholderText: qsTr("Entre un titre pour votre questionnaire ...")
     }
 
     ListView {
@@ -51,7 +58,7 @@ Item {
                     onClicked: {
                         //console.log(index)
                         wg_current_type = index
-                        page1_fieldedit.visible = true
+                        edit_field.visible = true
                     }
                 }
 
@@ -97,7 +104,7 @@ Item {
                 id: row1
                 spacing: 10
                 Image {
-                    source: 'close.png'
+                    source: '../PIXMAPS/close.png'
                 }
 
                 Text {
@@ -111,7 +118,7 @@ Item {
     }
 
     ToolBar {
-        id: toolBar1
+        id: toolBar22
         height: 40
         anchors.top: parent.top
         anchors.topMargin: 0
@@ -136,13 +143,31 @@ Item {
             highlighted: false
             onClicked: {
                 save_quest()
-                page1.rename_quest(name_quest)
+                survey_list.rename_quest(name_quest)
 
-                page1_edit.visible = false
+                survey_edit.visible = false
+            }
+        }
+
+        ToolButton {
+            id: toolButton2
+            x: 12
+            y: 0
+            width: 84
+            height: 40
+            text: qsTr("Annuler")
+            anchors.right: toolButton1.left
+            anchors.rightMargin: 10
+            enabled: true
+            autoExclusive: false
+            checked: false
+            checkable: false
+            highlighted: false
+            onClicked: {
+                survey_edit.visible = false
             }
         }
     }
-
 
     function save_quest()
     {
