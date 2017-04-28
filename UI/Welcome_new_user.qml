@@ -1,28 +1,21 @@
 import QtQuick 2.0
-import QtQuick.Dialogs 1.2
 import QtQuick.Controls 2.1
+import QtQuick.Dialogs 1.2
+import QtQuick.Layouts 1.1
 import QtQuick.LocalStorage 2.0
+import QtGraphicalEffects 1.0
 
 Item {
 
-    Behavior on y {
-        NumberAnimation {
-            easing.amplitude: 0.5
-            duration: 1000
-            easing.type: Easing.OutBounce
-        }
-    }
 
     Rectangle{
         x: 0
         y: 0
         anchors.fill: parent
-        color: "#000000"
+        color: "#BBFFFFFF"
     }
 
     Image {
-        x: (applicationwindow.width - 100) / 2
-        y: 80
         source: "../PIXMAPS/workspace.png"
     }
 
@@ -33,7 +26,7 @@ Item {
         text: qsTr("Bienvenue sur JTN - Just To kNown.\nIl me semble que c'est la première fois que vous venez ici.\nFaisons d'abord connaissance, comment vous appellez vous ?")
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
-        color: "white"
+        color: "#141424"
     }
 
     TextField{
@@ -70,12 +63,21 @@ Item {
         id: button_valide_profil
         text: qsTr("Valider")
         background: Rectangle {
+
             implicitWidth: 100
             implicitHeight: 40
-            color: button_valide_profil.hovered ? "#d6d6d6" : "#f6f6f6"
-            border.color: "#26282a"
-            border.width: 1
-            radius: 4
+            LinearGradient {
+                anchors.fill: parent
+                gradient: Gradient {
+                    GradientStop { position: 0; color: "#fffea444" }
+                    GradientStop { position: 1; color: "#ffe76d17" }
+                }
+                start: Qt.point(0, 0)
+                end: Qt.point(0, parent.height)
+            }
+            border.color: "#c4721c"
+            border.width: 2
+            radius: 8
         }
         x: 10
         y: applicationwindow.height - 100
@@ -85,6 +87,16 @@ Item {
             create_user()
         }
     }
+
+    Behavior on y {
+        NumberAnimation {
+            easing.amplitude: 0.5
+            duration: 1000
+            easing.type: Easing.OutBounce
+        }
+    }
+
+
 
     MessageDialog {
         id: new_user_error

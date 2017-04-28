@@ -2,6 +2,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.LocalStorage 2.0
+import QtGraphicalEffects 1.0
 import "UI/"
 
 ApplicationWindow {
@@ -15,6 +16,31 @@ ApplicationWindow {
     property string wg_full_name
     property int wg_current_quest_id
 
+    Image {
+        id: background_application
+        x: 0
+        y: 0
+        anchors.fill: parent
+        fillMode: Image.PreserveAspectCrop
+        source: "PIXMAPS/background.jpg"
+    }
+
+    FastBlur {
+        anchors.fill: background_application
+        source: background_application
+        radius: 32
+    }
+
+    App_Button{
+        x:10
+        y:10
+        width: parent.width - 20
+        height: 150
+        visible: true
+        z: 11
+        button_title: "Valider"
+    }
+
     Welcome_new_user{
         id: welcome_new_user
         x: 0
@@ -22,6 +48,7 @@ ApplicationWindow {
         width: applicationwindow.width
         height: applicationwindow.height
         z: 10
+        visible: false
     }
 
     Choose_profil{
@@ -31,6 +58,7 @@ ApplicationWindow {
         width: applicationwindow.width
         height: applicationwindow.height
         z: 9
+        visible: false
     }
 
     Survey_list{
@@ -40,6 +68,7 @@ ApplicationWindow {
         width: applicationwindow.width
         height: applicationwindow.height
         z: 8
+        visible: false
     }
 
     Survey_edit{
@@ -77,7 +106,7 @@ ApplicationWindow {
 
         if ( wl_record_users.rows.length == 0 )
         {
-            welcome_new_user.visible = true
+            //welcome_new_user.visible = true
         }
         else
         {

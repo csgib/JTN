@@ -13,5 +13,7 @@
         <file>PIXMAPS/edit.png</file>
         <file>UI/Edit_field.qml</file>
         <file>PIXMAPS/close.png</file>
+        <file>PIXMAPS/background.jpg</file>
+        <file>UI/App_Button.qml</file>
     </qresource>
 </RCC>
