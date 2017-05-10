@@ -93,8 +93,11 @@ Item {
 
     Rectangle{
         id: support_lv_field_type
-        anchors.fill: parent
-        visible: false
+        z: 2
+        x: applicationwindow.width
+        y: 0
+        width: applicationwindow.width
+        height: applicationwindow.height
 
         ListView {
             id: lv_field_type
@@ -113,13 +116,13 @@ Item {
                         text: type
                         visible: false
                     }
-
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
                             wg_current_type = index
-                            support_lv_field_type.visible = false
+                            support_lv_field_type.x = applicationwindow.width
                             edit_field.y = 0
+                            bt_add_field.visible = true
                         }
                     }
 
@@ -152,6 +155,7 @@ Item {
     ListView {
         id: listView2
         x: 0
+        z: 1
         width: applicationwindow.width
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
@@ -174,22 +178,30 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: true
                 }
+
+                Text {
+                    text: question
+                    font.italic: true
+                }
             }
         }
         model: ListModel {}
     }
 
     Image{
+        id: bt_add_field
         source: "../PIXMAPS/button_add.png"
         y: applicationwindow.height - 70
         x: applicationwindow.width - 70
+        z: 2
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
         MouseArea{
             anchors.fill: parent
             onClicked: {
-                support_lv_field_type.visible = true
+                support_lv_field_type.x = 0
+                bt_add_field.visible = false
             }
         }
     }
@@ -229,7 +241,6 @@ Item {
                 var rs = tx.executeSql('SELECT * FROM QUESTIONS WHERE QUESTS_ID = ' + id + ' ORDER BY QUESTIONS_ORDER');
                 var wl_name
                 for(var i = 0; i < rs.rows.length; i++) {
-                    console.log(rs.rows.item(i).QUESTIONS_TYPE)
                     switch(rs.rows.item(i).QUESTIONS_TYPE)
                     {
                         case 0:
@@ -245,7 +256,7 @@ Item {
                             wl_name = "Valeur / Notation"
                             break
                     }
-                    listView2.model.append({name: wl_name})
+                    listView2.model.append({name: wl_name, question: rs.rows.item(i).QUESTIONS_TITLE})
                 }
             }
         )
@@ -258,13 +269,13 @@ Item {
         )
     }
 
-    function add_field()
+    function add_field(wl_question_title)
     {
         var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database")
 
         db.transaction(
             function(tx) {
-                tx.executeSql('INSERT INTO QUESTIONS VALUES(?, ?, ?, ?, ?, ?, ?)', [ , wg_current_quest_id, 0, mylm.get(wg_current_type).type,'','','' ])
+                tx.executeSql('INSERT INTO QUESTIONS VALUES(?, ?, ?, ?, ?, ?, ?)', [ , wg_current_quest_id, 0, mylm.get(wg_current_type).type, wl_question_title, '', '' ])
             }
         )
         listView2.model.append({name: mylm.get(wg_current_type).name})

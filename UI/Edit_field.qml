@@ -56,15 +56,15 @@ Item {
                 height: 40
                 text: qsTr("Valider")
                 onClicked: {
-                    survey_edit.add_field()
+                    survey_edit.add_field(chp_question_libelle.text)
                     edit_field.y = applicationwindow.height
                 }
             }
         }
     }
 
-    WID_Textfield {
-        id: textEdit1
+    WID_Textarea {
+        id: chp_question_libelle
         height: 193
         placeholderText: qsTr("Entrez votre question ...")
         anchors.top: toolBar1.bottom

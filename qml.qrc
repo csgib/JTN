@@ -17,5 +17,6 @@
         <file>WIDGETS/WID_Button.qml</file>
         <file>WIDGETS/WID_Textfield.qml</file>
         <file>PIXMAPS/button_add.png</file>
+        <file>WIDGETS/WID_Textarea.qml</file>
     </qresource>
 </RCC>

@@ -656,6 +656,7 @@ qrc_qml.cpp: ../qml.qrc \
 		../UI/Edit_field.qml \
 		../UI/Choose_profil.qml \
 		../WIDGETS/WID_Textfield.qml \
+		../WIDGETS/WID_Textarea.qml \
 		../WIDGETS/WID_Button.qml
 	/home/sgibault/Install/Qt/5.8/gcc_64/bin/rcc -name qml ../qml.qrc -o qrc_qml.cpp
 
