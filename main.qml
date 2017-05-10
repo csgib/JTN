@@ -1,9 +1,9 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
 import QtQuick.LocalStorage 2.0
 import QtGraphicalEffects 1.0
 import "UI/"
+import "WIDGETS/"
 
 ApplicationWindow {
 
@@ -31,16 +31,6 @@ ApplicationWindow {
         radius: 32
     }
 
-    App_Button{
-        x:10
-        y:10
-        width: parent.width - 20
-        height: 150
-        visible: true
-        z: 11
-        button_title: "Valider"
-    }
-
     Welcome_new_user{
         id: welcome_new_user
         x: 0
@@ -53,42 +43,42 @@ ApplicationWindow {
 
     Choose_profil{
         id: choose_profil
-        x: 0
+        x: -applicationwindow.width
         y: 0
         width: applicationwindow.width
         height: applicationwindow.height
         z: 9
-        visible: false
+        visible: true
     }
 
     Survey_list{
         id: survey_list
         x: 0
-        y: 0
+        y: applicationwindow.height
         width: applicationwindow.width
         height: applicationwindow.height
         z: 8
-        visible: false
+        visible: true
     }
 
     Survey_edit{
         id: survey_edit
         x: 0
-        y: 0
+        y: applicationwindow.height
         width: applicationwindow.width
         height: applicationwindow.height
         z: 9
-        visible: false
+        visible: true
     }
 
     Edit_field{
         id: edit_field
         x: 0
-        y: 0
+        y: applicationwindow.height
         width: applicationwindow.width
         height: applicationwindow.height
         z: 9
-        visible: false
+        visible: true
     }
 
     function init_database() {
@@ -106,12 +96,12 @@ ApplicationWindow {
 
         if ( wl_record_users.rows.length == 0 )
         {
-            //welcome_new_user.visible = true
+            welcome_new_user.visible = true
         }
         else
         {
-            welcome_new_user.visible = false
             wg_full_name = wl_record_users.rows.item(0).USERS_FIRST_NAME + " " + wl_record_users.rows.item(0).USERS_LAST_NAME
+            choose_profil.x = 0
         }
 
     }

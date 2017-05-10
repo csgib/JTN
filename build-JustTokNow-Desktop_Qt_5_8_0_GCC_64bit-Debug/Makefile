@@ -643,15 +643,20 @@ qrc_qml.cpp: ../qml.qrc \
 		../main.cpp \
 		../qtquickcontrols2.conf \
 		../main.qml \
+		../PIXMAPS/close.png \
 		../PIXMAPS/edit.png \
 		../PIXMAPS/delete.png \
+		../PIXMAPS/button_add.png \
+		../PIXMAPS/background.jpg \
 		../PIXMAPS/workspace.png \
 		../UI/Quest_Item.qml \
 		../UI/Survey_edit.qml \
 		../UI/Survey_list.qml \
 		../UI/Welcome_new_user.qml \
 		../UI/Edit_field.qml \
-		../UI/Choose_profil.qml
+		../UI/Choose_profil.qml \
+		../WIDGETS/WID_Textfield.qml \
+		../WIDGETS/WID_Button.qml
 	/home/sgibault/Install/Qt/5.8/gcc_64/bin/rcc -name qml ../qml.qrc -o qrc_qml.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

@@ -1,12 +1,10 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.1
 import QtQuick.Dialogs 1.2
-import QtQuick.Layouts 1.1
 import QtQuick.LocalStorage 2.0
-import QtGraphicalEffects 1.0
+import "../WIDGETS/"
 
 Item {
-
 
     Rectangle{
         x: 0
@@ -29,59 +27,30 @@ Item {
         color: "#141424"
     }
 
-    TextField{
+    WID_Textfield{
         id: chp_first_name
-        background: Rectangle {
-            radius: 2
-            border.color: "#333333"
-            border.width: 1
-            color: "black"
-        }
         placeholderText: qsTr("Entrez votre nom ...")
-        color: "white"
         x: 10
         y: applicationwindow.height - 210
         width: applicationwindow.width - 20
     }
 
-    TextField{
+    WID_Textfield{
         id: chp_last_name
-        background: Rectangle {
-            radius: 2
-            border.color: "#333333"
-            border.width: 1
-            color: "black"
-        }
         placeholderText: qsTr("Entrez votre prénom ...")
-        color: "white"
         x: 10
         y: applicationwindow.height - 170
         width: applicationwindow.width - 20
     }
 
-    Button {
-        id: button_valide_profil
-        text: qsTr("Valider")
-        background: Rectangle {
 
-            implicitWidth: 100
-            implicitHeight: 40
-            LinearGradient {
-                anchors.fill: parent
-                gradient: Gradient {
-                    GradientStop { position: 0; color: "#fffea444" }
-                    GradientStop { position: 1; color: "#ffe76d17" }
-                }
-                start: Qt.point(0, 0)
-                end: Qt.point(0, parent.height)
-            }
-            border.color: "#c4721c"
-            border.width: 2
-            radius: 8
-        }
+    WID_Button{
         x: 10
         y: applicationwindow.height - 100
         width: applicationwindow.width - 20
+        visible: true
+        z: 11
+        button_title: qsTr("Valider")
 
         onClicked: {
             create_user()
@@ -123,6 +92,7 @@ Item {
 
             wg_full_name = chp_first_name.text + " " + chp_last_name.text
             welcome_new_user.y = applicationwindow.height
+            choose_profil.x = 0
         }
     }
 }

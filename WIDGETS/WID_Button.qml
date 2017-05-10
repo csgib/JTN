@@ -2,7 +2,11 @@ import QtQuick 2.0
 import QtGraphicalEffects 1.0
 
 Item {
+    id: root
     visible: true
+    height: 50
+
+    signal clicked()
 
     property string button_title: ""
 
@@ -34,7 +38,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             minimumPixelSize: 10
-            font.pixelSize: 100
+            font.pixelSize: 40
             styleColor: "#55000000"
             style: Text.Outline
             renderType: Text.QtRendering
@@ -53,6 +57,9 @@ Item {
             onExited: {
                 gradcolor_1 = save_gradcolor_1
                 gradcolor_2 = save_gradcolor_2
+            }
+            onClicked:  {
+                root.clicked()
             }
         }
     }

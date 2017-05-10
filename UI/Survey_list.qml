@@ -7,6 +7,29 @@ Item {
 
     property var wg_current_quest
 
+    Behavior on y {
+        NumberAnimation {
+            easing.amplitude: 0.5
+            duration: 1000
+            easing.type: Easing.OutBounce
+        }
+    }
+
+    Behavior on x {
+        NumberAnimation {
+            easing.amplitude: 0.5
+            duration: 1000
+            easing.type: Easing.OutBounce
+        }
+    }
+
+    Rectangle{
+        x: 0
+        y: 0
+        anchors.fill: parent
+        color: "#BBFFFFFF"
+    }
+
     ToolBar {
         id: toolBar1
         height: 40
@@ -34,7 +57,6 @@ Item {
             text: qsTr("Ajouter")
             onClicked: {
                 create_quest()
-                page1_edit.visible = true
             }
         }
 
@@ -53,7 +75,8 @@ Item {
             highlighted: false
             text: qsTr("Fermer")
             onClicked: {
-                choose_profil.y = 0
+                survey_list.y = applicationwindow.height
+                choose_profil.x = 0
             }
         }
     }
@@ -93,31 +116,30 @@ Item {
 
                 var r = ""
                 for(var i = 0; i < rs.rows.length; i++) {
-                    console.log("A = " + rs.rows.item(i).QUESTS_ID + " " + rs.rows.item(i).QUESTS_NAME);
-                    listView1.model.append({name: rs.rows.item(i).QUESTS_NAME, questid: rs.rows.item(i).QUESTS_ID})
+                    var wl_name = rs.rows.item(i).QUESTS_NAME
+                    if ( wl_name === null )
+                    {
+                        wl_name = "..."
+                    }
+                    listView1.model.append({name: wl_name, questid: rs.rows.item(i).QUESTS_ID})
                 }
             }
         )
     }
 
-    function create_quest() {
-        var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database");
-
-        db.transaction(
-            function(tx) {
-                tx.executeSql('INSERT INTO QUESTS VALUES(?, ?, ?)', [ , 'COUCOU', Qt.formatDate(new Date(),"yyyyMMdd") ])
-                var result = tx.executeSql('SELECT QUESTS_ID FROM QUESTS ORDER BY QUESTS_ID DESC LIMIT 1')
-                wg_current_quest_id = result.rows.item(0).QUESTS_ID
-            }
-        )
-
-        survey_edit.visible = true
+    function create_quest()
+    {
+        survey_list.x = applicationwindow.width
+        survey_edit.y = 0
+        wg_current_quest_id = ""
     }
 
     function glob_reload_quest()
     {
-        survey_edit.visible = true
-        survey_edit.reload_quest(mylq.get(wg_current_quest).questid)
+        survey_list.x = applicationwindow.width
+        survey_edit.y = 0
+        wg_current_quest_id = mylq.get(wg_current_quest).questid
+        survey_edit.reload_quest(wg_current_quest_id)
     }
 
     function rename_quest(wl_name)

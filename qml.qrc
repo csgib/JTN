@@ -14,6 +14,8 @@
         <file>UI/Edit_field.qml</file>
         <file>PIXMAPS/close.png</file>
         <file>PIXMAPS/background.jpg</file>
-        <file>UI/App_Button.qml</file>
+        <file>WIDGETS/WID_Button.qml</file>
+        <file>WIDGETS/WID_Textfield.qml</file>
+        <file>PIXMAPS/button_add.png</file>
     </qresource>
 </RCC>

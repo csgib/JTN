@@ -1,8 +1,24 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import "../WIDGETS/"
 
 Item {
-    id: item1
+
+    Behavior on y {
+        NumberAnimation {
+            easing.amplitude: 0.5
+            duration: 1000
+            easing.type: Easing.OutBounce
+        }
+    }
+
+    Behavior on x {
+        NumberAnimation {
+            easing.amplitude: 0.5
+            duration: 1000
+            easing.type: Easing.OutBounce
+        }
+    }
 
     Rectangle{
         anchors.fill: parent
@@ -29,7 +45,7 @@ Item {
                 height: 40
                 text: qsTr("Annuler")
                 onClicked: {
-                    page1_fieldedit.visible = false
+                    edit_field.y = applicationwindow.height
                 }
             }
 
@@ -41,16 +57,16 @@ Item {
                 text: qsTr("Valider")
                 onClicked: {
                     survey_edit.add_field()
-                    edit_field.visible = false
+                    edit_field.y = applicationwindow.height
                 }
             }
         }
     }
 
-    TextEdit {
+    WID_Textfield {
         id: textEdit1
         height: 193
-        text: qsTr("Text Edit")
+        placeholderText: qsTr("Entrez votre question ...")
         anchors.top: toolBar1.bottom
         anchors.topMargin: 10
         anchors.left: parent.left
