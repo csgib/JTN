@@ -95,16 +95,34 @@ Item {
         width: parent.width
         height: parent.height - (bt_add_answer.y + 50)
         boundsBehavior: Flickable.StopAtBounds
+        clip: true
         delegate: Item {
             x: 5
             width: parent.width
             height: 100
+            property int myid: index
+            property string myname: name
+
             WID_Textarea {
                 y: 5
                 text: name
                 height: 90
                 placeholderText: qsTr("Entrez le descriptif de la réponse possible")
                 anchors.verticalCenter: parent.verticalCenter
+                onTextChanged: {
+                    parent.myname = this.text
+                    //mylm_answers_possible.get(parent.myid).name = this.text
+                    //mylm_answers_possible.set(this.id,{"name": this.text})
+                }
+            }
+
+            Button{
+                text: "Supprimer"
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.right
+                onClicked: {
+                    parent.visible = false
+                }
             }
         }
         model: ListModel {
@@ -117,7 +135,7 @@ Item {
 
     function fn_add_answer()
     {
-        mylm_answers_possible.append({"name":"Pizza"})
+        mylm_answers_possible.append({"name":"Pizza", "questid": mylm_answers_possible.rowCount() })
     }
 
     function fn_valide_question()
@@ -125,7 +143,7 @@ Item {
         var wl_idx = 0
         while ( wl_idx < mylm_answers_possible.rowCount() )
         {
-            console.log( mylm_answers_possible.get(wl_idx).attributes.get(0).value )
+            console.log( mylm_answers_possible.get(wl_idx).myname )
             wl_idx++
         }
 
