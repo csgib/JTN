@@ -59,6 +59,7 @@ DIST          = ../README \
 		../android/build.gradle \
 		../android/gradle/wrapper/gradle-wrapper.properties \
 		../android/gradlew.bat \
+		../LICENCE.txt \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/common/unix.conf \
 		../../../../Install/Qt/5.8/gcc_64/mkspecs/common/linux.conf \
