@@ -97,11 +97,10 @@ Item {
         boundsBehavior: Flickable.StopAtBounds
         clip: true
         delegate: Item {
+            property int indexOfThisDelegate: index
             x: 5
             width: parent.width
             height: 100
-            property int myid: index
-            property string myname: name
 
             WID_Textarea {
                 y: 5
@@ -110,9 +109,7 @@ Item {
                 placeholderText: qsTr("Entrez le descriptif de la réponse possible")
                 anchors.verticalCenter: parent.verticalCenter
                 onTextChanged: {
-                    parent.myname = this.text
-                    //mylm_answers_possible.get(parent.myid).name = this.text
-                    //mylm_answers_possible.set(this.id,{"name": this.text})
+                    mylm_answers_possible.set(indexOfThisDelegate,{"name": this.text})
                 }
             }
 
@@ -121,7 +118,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.right
                 onClicked: {
-                    parent.visible = false
+                    mylm_answers_possible.remove(1)
                 }
             }
         }
@@ -135,19 +132,20 @@ Item {
 
     function fn_add_answer()
     {
-        mylm_answers_possible.append({"name":"Pizza", "questid": mylm_answers_possible.rowCount() })
+        mylm_answers_possible.append({"name":"" })
     }
 
     function fn_valide_question()
     {
         var wl_idx = 0
+        var wl_params = "";
         while ( wl_idx < mylm_answers_possible.rowCount() )
         {
-            console.log( mylm_answers_possible.get(wl_idx).myname )
+            wl_params += mylm_answers_possible.get(wl_idx).name + "$%SPLIT%$";
             wl_idx++
         }
 
-        survey_edit.add_field(chp_question_libelle.text)
+        survey_edit.add_field(chp_question_libelle.text, wl_params)
         edit_field.y = applicationwindow.height
     }
 }
