@@ -129,6 +129,7 @@ Item {
 
     function create_quest()
     {
+        survey_edit.init_quest()
         survey_list.x = applicationwindow.width
         survey_edit.y = 0
         wg_current_quest_id = ""

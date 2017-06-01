@@ -185,7 +185,9 @@ Item {
                 }
             }
         }
-        model: ListModel {}
+        model: ListModel {
+            id: lv2model
+        }
     }
 
     Image{
@@ -204,6 +206,12 @@ Item {
                 bt_add_field.visible = false
             }
         }
+    }
+
+    function init_quest()
+    {
+        name_quest.text = ""
+        lv2model.clear()
     }
 
     function save_quest()
