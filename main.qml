@@ -16,7 +16,7 @@ ApplicationWindow {
     property string wg_full_name
     property int wg_current_quest_id
 
-    Image {
+    /*Image {
         id: background_application
         x: 0
         y: 0
@@ -29,7 +29,7 @@ ApplicationWindow {
         anchors.fill: background_application
         source: background_application
         radius: 32
-    }
+    }*/
 
     Welcome_new_user{
         id: welcome_new_user
