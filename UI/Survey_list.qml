@@ -140,6 +140,7 @@ Item {
         survey_list.x = applicationwindow.width
         survey_edit.y = 0
         wg_current_quest_id = mylq.get(wg_current_quest).questid
+
         survey_edit.reload_quest(wg_current_quest_id)
     }
 

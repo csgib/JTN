@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.LocalStorage 2.0
+import QtQml.Models 2.1
 import "../WIDGETS/"
 
 Item {
@@ -152,10 +153,103 @@ Item {
         }
     }
 
+    Component {
+        id: dragDelegate
+
+        MouseArea {
+            id: dragArea
+            property bool held: false
+
+            anchors { left: parent.left; right: parent.right }
+            height: content.height
+
+            drag.target: held ? content : undefined
+            drag.axis: Drag.YAxis
+
+            onPressAndHold: {
+                held = true
+            }
+            onReleased: held = false
+
+            Rectangle {
+                id: content
+
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    verticalCenter: parent.verticalCenter
+                }
+                width: dragArea.width; height: column.implicitHeight + 4
+
+                border.width: 1
+                border.color: "lightsteelblue"
+                color: dragArea.held ? "lightsteelblue" : "white"
+                Behavior on color { ColorAnimation { duration: 100 } }
+                radius: 2
+
+                Drag.active: dragArea.held
+                Drag.source: dragArea
+                Drag.hotSpot.x: width / 2
+                Drag.hotSpot.y: height / 2
+
+                states: State {
+                    when: dragArea.held
+
+                    ParentChange { target: content; parent: dragArea }
+                    AnchorChanges {
+                        target: content
+                        anchors { horizontalCenter: undefined; verticalCenter: undefined }
+                    }
+                }
+
+                Column {
+                    id: column
+                    anchors { fill: parent; margins: 2 }
+
+                    Text { text: 'Type : ' + name }
+                    Text { text: 'Quest : ' + question }
+                }
+            }
+
+            DropArea {
+                anchors { fill: parent; margins: 10 }
+
+
+                onEntered: {
+
+                    //console.log(drag.source.DelegateModel.itemsIndex + " " + dragArea.DelegateModel.itemsIndex)
+
+                    if ( drag.source.DelegateModel.itemsIndex != dragArea.DelegateModel.itemsIndex )
+                    {
+                        contactmodel.move(drag.source.DelegateModel.itemsIndex, dragArea.DelegateModel.itemsIndex, 1)
+                    }
+
+                    visualModel.items.move(
+                            drag.source.DelegateModel.itemsIndex,
+                            dragArea.DelegateModel.itemsIndex)
+
+                }
+            }
+        }
+    }
+
+    ListModel {
+        id: contactmodel
+    }
+
+    DelegateModel {
+        id: visualModel
+
+        model: contactmodel
+        delegate: dragDelegate
+    }
+
     ListView {
-        id: listView2
+        id: mylv
+        model: visualModel
         x: 0
         z: 1
+        spacing: 4
+        cacheBuffer: 50
         width: applicationwindow.width
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
@@ -185,9 +279,6 @@ Item {
                 }
             }
         }
-        model: ListModel {
-            id: lv2model
-        }
     }
 
     Image{
@@ -216,7 +307,16 @@ Item {
 
     function save_quest()
     {
-        var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database");
+        var wl_idx = 0
+        while ( wl_idx < contactmodel.rowCount() )
+        {
+            console.log(contactmodel.get(wl_idx).name )
+
+            wl_idx++
+        }
+
+
+        /*var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database");
 
         if ( wg_current_quest_id == "" )
         {
@@ -236,13 +336,14 @@ Item {
         }
         survey_edit.y = applicationwindow.height
         survey_list.x = 0
-        survey_list.rename_quest()
+        survey_list.rename_quest()*/
     }
 
     function reload_quest(id)
     {
-        listView2.model.clear()
+        //mylv.model.clear()
         wg_current_quest_id = id
+
         var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database")
         db.transaction(
             function(tx) {
@@ -264,7 +365,8 @@ Item {
                             wl_name = "Valeur / Notation"
                             break
                     }
-                    listView2.model.append({name: wl_name, question: rs.rows.item(i).QUESTIONS_TITLE})
+                    contactmodel.append({name: wl_name, question: rs.rows.item(i).QUESTIONS_TITLE})
+                    //mylv.model.append({name: wl_name, question: rs.rows.item(i).QUESTIONS_TITLE})
                 }
             }
         )
@@ -286,6 +388,6 @@ Item {
                 tx.executeSql('INSERT INTO QUESTIONS VALUES(?, ?, ?, ?, ?, ?, ?)', [ , wg_current_quest_id, 0, mylm.get(wg_current_type).type, wl_question_title, '', '' ])
             }
         )
-        listView2.model.append({name: mylm.get(wg_current_type).name})
+        mylv.model.append({name: mylm.get(wg_current_type).name, question: wl_question_title})
     }
 }

@@ -1,6 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.1
-import QtQuick.Dialogs 1.2
+import QtQuick.Controls 2.0
 import QtQuick.LocalStorage 2.0
 import "../WIDGETS/"
 
@@ -65,20 +64,11 @@ Item {
         }
     }
 
-
-
-    MessageDialog {
-        id: new_user_error
-        visible: false
-        title: qsTr("Erreur")
-        text: qsTr("Vous devez renseigner votre nom et votre prénom pour continuer")
-    }
-
     function create_user()
     {
         if ( chp_first_name.text == "" || chp_last_name == "" )
         {
-            new_user_error.visible = true
+            // ben la y a erreur
         }
         else
         {
