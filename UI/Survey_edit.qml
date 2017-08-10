@@ -205,6 +205,8 @@ Item {
                     id: column
                     anchors { fill: parent; margins: 2 }
 
+
+
                     Text { text: 'Type : ' + name }
                     Text { text: 'Quest : ' + question }
                 }
@@ -229,6 +231,10 @@ Item {
 
                 }
             }
+
+            onDoubleClicked: {
+                console.log("COUCOU")
+            }
         }
     }
 
@@ -248,7 +254,7 @@ Item {
         model: visualModel
         x: 0
         z: 1
-        spacing: 4
+        spacing: 10
         cacheBuffer: 50
         width: applicationwindow.width
         anchors.bottom: parent.bottom
@@ -260,24 +266,6 @@ Item {
             x: 5
             width: parent.width
             height: 40
-            Row {
-                id: row1
-                spacing: 10
-                Image {
-                    source: '../PIXMAPS/close.png'
-                }
-
-                Text {
-                    text: name
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.bold: true
-                }
-
-                Text {
-                    text: question
-                    font.italic: true
-                }
-            }
         }
     }
 
@@ -302,7 +290,7 @@ Item {
     function init_quest()
     {
         name_quest.text = ""
-        lv2model.clear()
+        contactmodel.clear()
     }
 
     function save_quest()
