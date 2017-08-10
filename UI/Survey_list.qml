@@ -82,7 +82,7 @@ Item {
     }
 
     ListView {
-        id: listView1
+        id: lv_survey_list
         anchors.left: parent.left
         anchors.leftMargin: 10
         anchors.right: parent.right
@@ -107,7 +107,11 @@ Item {
         }
     }
 
-    function load_quests_database() {
+    function fn_load_quests_database() {
+        // *** CLEAR THE LISTVIEW ***
+        lv_survey_list.model.clear()
+
+        // *** GET ALL THE SURVEY IN DATABASE ***
         var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database");
 
         db.transaction(
@@ -121,7 +125,7 @@ Item {
                     {
                         wl_name = "..."
                     }
-                    listView1.model.append({name: wl_name, questid: rs.rows.item(i).QUESTS_ID})
+                    lv_survey_list.model.append({name: wl_name, questid: rs.rows.item(i).QUESTS_ID})
                 }
             }
         )

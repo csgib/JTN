@@ -59,7 +59,7 @@ Item {
     }
 
     function show_survey_list(){
-            survey_list.load_quests_database()
+            survey_list.fn_load_quests_database()
             choose_profil.x = -applicationwindow.width
             survey_list.y = 0
     }
