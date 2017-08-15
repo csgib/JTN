@@ -156,9 +156,11 @@ Item {
     Component {
         id: dragDelegate
 
+
         MouseArea {
             id: dragArea
             property bool held: false
+            property int p_quest_id: question_id
 
             anchors { left: parent.left; right: parent.right }
             height: content.height
@@ -205,7 +207,10 @@ Item {
                     id: column
                     anchors { fill: parent; margins: 2 }
 
-
+                    /*Text {
+                        text: question_id
+                        visible: false
+                    }*/
 
                     Text { text: 'Type : ' + name }
                     Text { text: 'Quest : ' + question }
@@ -233,7 +238,9 @@ Item {
             }
 
             onDoubleClicked: {
-                console.log("COUCOU")
+                edit_field.reload_field(p_quest_id, wg_current_quest_id)
+                edit_field.y = 0
+                bt_add_field.visible = true
             }
         }
     }
@@ -281,6 +288,7 @@ Item {
         MouseArea{
             anchors.fill: parent
             onClicked: {
+                edit_field.wl_update_status = 0
                 support_lv_field_type.x = 0
                 bt_add_field.visible = false
             }
@@ -353,8 +361,7 @@ Item {
                             wl_name = "Valeur / Notation"
                             break
                     }
-                    contactmodel.append({name: wl_name, question: rs.rows.item(i).QUESTIONS_TITLE})
-                    //mylv.model.append({name: wl_name, question: rs.rows.item(i).QUESTIONS_TITLE})
+                    contactmodel.append({name: wl_name, question: rs.rows.item(i).QUESTIONS_TITLE, question_id: rs.rows.item(i).QUESTIONS_ID})
                 }
             }
         )
@@ -378,4 +385,17 @@ Item {
         )
         mylv.model.append({name: mylm.get(wg_current_type).name, question: wl_question_title})
     }
+
+    function update_field(wl_question_title)
+    {
+        var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database")
+
+        db.transaction(
+            function(tx) {
+                tx.executeSql('UPDATE')
+            }
+        )
+        //mylv.model.append({name: mylm.get(wg_current_type).name, question: wl_question_title})
+    }
+
 }

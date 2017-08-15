@@ -1,8 +1,13 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import QtQuick.LocalStorage 2.0
+
 import "../WIDGETS/"
 
 Item {
+
+    property int wl_update_status: 0
+    property int wg_current_question_id
 
     Behavior on y {
         NumberAnimation {
@@ -145,7 +150,31 @@ Item {
             wl_idx++
         }
 
-        survey_edit.add_field(chp_question_libelle.text, wl_params)
+        if ( wl_update_status == 1 )
+        {
+            survey_edit.update_field(chp_question_libelle.text, wl_params)
+        }
+        else
+        {
+            survey_edit.add_field(chp_question_libelle.text, wl_params)
+        }
+
+
         edit_field.y = applicationwindow.height
+    }
+
+    function reload_field(rp_quest_id, pr_current_quest_id)
+    {
+        var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database")
+
+        db.transaction(
+            function(tx) {
+                var rs = tx.executeSql('SELECT * FROM QUESTIONS WHERE QUESTS_ID = ' + pr_current_quest_id + ' AND QUESTIONS_ID = ' + rp_quest_id);
+
+                chp_question_libelle.text = rs.rows.item(0).QUESTIONS_TITLE
+            }
+        )
+        wg_current_question_id = rp_quest_id
+        wl_update_status = 1
     }
 }
