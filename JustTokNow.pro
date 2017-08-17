@@ -1,4 +1,4 @@
-QT += qml bluetooth quick
+QT += qml bluetooth multimedia quick
 
 CONFIG += c++11
 

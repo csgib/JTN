@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.LocalStorage 2.0
+import QtMultimedia 5.8
 import "../WIDGETS/"
 
 Item {
@@ -24,6 +25,78 @@ Item {
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
         color: "#141424"
+    }
+
+    Camera {
+        id: camera
+
+        //imageProcessing.whiteBalanceMode: CameraImageProcessing.WhiteBalanceFlash
+
+        /*exposure {
+            exposureCompensation: -1.0
+            exposureMode: Camera.ExposurePortrait
+        }*/
+
+        //flash.mode: Camera.FlashRedEyeReduction
+
+        position: Camera.FrontFace
+
+        imageCapture {
+            onImageCaptured: {
+                photoPreview.source = preview
+            }
+
+            onCaptureFailed: {
+                console.log("ERREUR CAPTURE IMAGE")
+            }
+        }
+    }
+
+    VideoOutput {
+        source: camera
+        width: 400
+        height: 300
+        autoOrientation: true
+        //anchors.fill: parent
+        //focus : visible
+    }
+
+    Image {
+        id: photoPreview
+        x: 400
+        y: 0
+        width: 400
+        height: 300
+        visible: true
+    }
+
+    Button{
+        text: "Capture"
+        x: 100
+        y: 350
+        width: 100
+        height: 32
+        onClicked: {
+            camera.imageCapture.capture()
+        }
+    }
+
+    Button{
+        text: "Avant / Arr"
+        x: 100
+        y: 385
+        width: 100
+        height: 32
+        onClicked: {
+            if ( camera.position == Camera.FrontFace )
+            {
+                camera.position = Camera.BackFace
+            }
+            else
+            {
+                camera.position = Camera.FrontFace
+            }
+        }
     }
 
     WID_Textfield{
