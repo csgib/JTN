@@ -1,7 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.LocalStorage 2.0
-import QtGraphicalEffects 1.0
 import "UI/"
 import "WIDGETS/"
 
@@ -11,25 +10,20 @@ ApplicationWindow {
     visible: true
     width: 480
     height: 640
-    title: qsTr("JTN - Just To Know")
+    title: qsTr("JTN - Just To kNow")
 
-    property string wg_full_name
-    property int wg_current_quest_id
+    property string wg_full_name // *** PROPERTY TO HANDLE USERNAME ***
+    property int wg_current_quest_id // *** PROPERTY TO HANDLE CURRENT QUEST ID ***
 
-    /*Image {
-        id: background_application
+    Message_box{
+        id: message_box
         x: 0
         y: 0
-        anchors.fill: parent
-        fillMode: Image.PreserveAspectCrop
-        source: "PIXMAPS/background.jpg"
+        width: applicationwindow.width
+        height: applicationwindow.height
+        z: 11
+        visible: false
     }
-
-    FastBlur {
-        anchors.fill: background_application
-        source: background_application
-        radius: 32
-    }*/
 
     Welcome_new_user{
         id: welcome_new_user
@@ -41,7 +35,7 @@ ApplicationWindow {
         visible: false
     }
 
-    Choose_profil{
+    /*Choose_profil{
         id: choose_profil
         x: -applicationwindow.width
         y: 0
@@ -79,7 +73,11 @@ ApplicationWindow {
         height: applicationwindow.height
         z: 9
         visible: true
-    }
+    }*/
+
+    // *****************************************
+    // *** GLOBAL FUNCTIONS TO INIT DATABASE ***
+    // *****************************************
 
     function init_database() {
         var db = LocalStorage.openDatabaseSync("JTNDB", "1.0", "JTN Database")
@@ -94,7 +92,7 @@ ApplicationWindow {
             }
         )
 
-        if ( wl_record_users.rows.length == 0 )
+        if ( wl_record_users.rows.length === 0 )
         {
             welcome_new_user.visible = true
         }

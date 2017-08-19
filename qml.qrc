@@ -4,7 +4,6 @@
         <file>qtquickcontrols2.conf</file>
         <file>UI/Welcome_new_user.qml</file>
         <file>UI/Quest_Item.qml</file>
-        <file>PIXMAPS/workspace.png</file>
         <file>main.cpp</file>
         <file>UI/Choose_profil.qml</file>
         <file>UI/Survey_list.qml</file>
@@ -17,5 +16,6 @@
         <file>WIDGETS/WID_Textfield.qml</file>
         <file>PIXMAPS/button_add.png</file>
         <file>WIDGETS/WID_Textarea.qml</file>
+        <file>UI/Message_box.qml</file>
     </qresource>
 </RCC>
