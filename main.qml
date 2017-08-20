@@ -15,6 +15,7 @@ ApplicationWindow {
     property string wg_full_name // *** PROPERTY TO HANDLE USERNAME ***
     property int wg_current_quest_id // *** PROPERTY TO HANDLE CURRENT QUEST ID ***
 
+
     Message_box{
         id: message_box
         x: 0

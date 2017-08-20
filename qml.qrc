@@ -17,5 +17,7 @@
         <file>PIXMAPS/button_add.png</file>
         <file>WIDGETS/WID_Textarea.qml</file>
         <file>UI/Message_box.qml</file>
+        <file>UI/Fake.qml</file>
+        <file>PIXMAPS/avatar.png</file>
     </qresource>
 </RCC>
