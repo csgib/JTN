@@ -107,23 +107,33 @@ Item {
         }
     }
 
+    // *************************************
+    // *** COMMONS ELEMENTS ON EACH PAGE ***
+    // *************************************
+
     FastBlur {
-        id: blur_me
+        id: blur_me_welcome_new_user
         source: background_welcome_new_user
         anchors.fill: parent
-        radius: 64
+        radius: 48
         visible: false
+    }
+
+    Behavior on x {
+        NumberAnimation {
+            easing.amplitude: 0.5
+            duration: 800
+            easing.type: Easing.OutBounce
+        }
     }
 
     Behavior on y {
         NumberAnimation {
             easing.amplitude: 0.5
-            duration: 1000
+            duration: 800
             easing.type: Easing.OutBounce
         }
     }
-
-
 
     // *****************************************
     // *** FUNCTIONS TO CREATE / MODIFY USER ***
@@ -133,9 +143,11 @@ Item {
     {
         if ( chp_first_name.text == "" || chp_last_name == "" )
         {
-            // ben la y a erreur
-            blur_me.visible = true
+            message_box.wg_current_frame = blur_me_welcome_new_user
+            message_box.wg_message_text = qsTr("Vous devez renseigner un nom et un prénom pour pouvoir utiliser l'application.")
+            blur_me_welcome_new_user.visible = true
             message_box.visible = true
+
         }
         else
         {

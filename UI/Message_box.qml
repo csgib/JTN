@@ -4,25 +4,31 @@ import "../WIDGETS/"
 
 Item {
 
+    property Item wg_current_frame
+    property string wg_message_text
+
     Rectangle{
         x: 0
         y: 0
         anchors.fill: parent
         color: "#AAFF0000"
-    }
 
-    Text{
-        anchors.fill: parent
-        font.pointSize: 24
-        text: "Ben y a une erreur"
-        wrapMode: Text.WordWrap
-        horizontalAlignment: Text.AlignHCenter
-    }
+        Text{
+            anchors.fill: parent
+            font.pointSize: 24
+            text: wg_message_text
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
 
-    /*FastBlur {
-        source: welcome_new_user
-        anchors.fill: parent
-        radius: 64
-    }*/
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                wg_current_frame.visible = false
+                message_box.visible = false
+            }
+        }
+    }
 }
 
