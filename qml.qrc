@@ -19,5 +19,6 @@
         <file>UI/Message_box.qml</file>
         <file>UI/Fake.qml</file>
         <file>PIXMAPS/avatar.png</file>
+        <file>UI/Main_support.qml</file>
     </qresource>
 </RCC>

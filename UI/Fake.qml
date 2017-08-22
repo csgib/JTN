@@ -3,37 +3,42 @@ import QtQuick.Controls 2.0
 import QtQuick.Window 2.3
 
 Item {
-    SwipeView {
-        id: swipeView
-        x: 31
-        y: 29
-        width: 559
-        height: 384
-        enabled: true
-        interactive: false
-        currentIndex: tabBar1.currentIndex
+    ToolBar {
+        id: toolBar
+        x: 0
+        y: 0
+        width: 640
+        height: 40
 
-        Item {
+        ToolButton {
+            id: toolButton
+            x: 560
+            y: 0
+            text: qsTr("Tool Button")
+            anchors.right: parent.right
+            anchors.rightMargin: 0
         }
 
-        Item {
+        Image {
+            id: image
+            x: 0
+            y: 0
+            width: 35
+            height: 40
+            source: "qrc:/qtquickplugin/images/template_image.png"
+        }
+
+        Text {
+            id: text1
+            x: 49
+            y: 13
+            width: 311
+            height: 14
+            text: qsTr("Text")
+            font.pixelSize: 12
         }
     }
 
-    TabBar {
-        id: tabBar1
-        x: 309
-        y: 432
-        anchors.bottom: swipeView.top
-        anchors.left: swipeView.left
-        anchors.right: swipeView.right
-        TabButton {
-            text: "Tab 0"
-        }
 
-        TabButton {
-            text: "Tab 1"
-        }
-    }
 
 }

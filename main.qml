@@ -1,4 +1,4 @@
-import QtQuick 2.7
+﻿import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.LocalStorage 2.0
 import "UI/"
@@ -36,45 +36,15 @@ ApplicationWindow {
         visible: false
     }
 
-    /*Choose_profil{
-        id: choose_profil
-        x: -applicationwindow.width
-        y: 0
-        width: applicationwindow.width
-        height: applicationwindow.height
-        z: 9
-        visible: true
-    }
-
-    Survey_list{
-        id: survey_list
+    Main_support{
+        id: main_support
         x: 0
-        y: applicationwindow.height
-        width: applicationwindow.width
+        y: 0
+        width: -applicationwindow.width
         height: applicationwindow.height
         z: 8
         visible: true
     }
-
-    Survey_edit{
-        id: survey_edit
-        x: 0
-        y: applicationwindow.height
-        width: applicationwindow.width
-        height: applicationwindow.height
-        z: 9
-        visible: true
-    }
-
-    Edit_field{
-        id: edit_field
-        x: 0
-        y: applicationwindow.height
-        width: applicationwindow.width
-        height: applicationwindow.height
-        z: 9
-        visible: true
-    }*/
 
     // *****************************************
     // *** GLOBAL FUNCTIONS TO INIT DATABASE ***
@@ -100,7 +70,8 @@ ApplicationWindow {
         else
         {
             wg_full_name = wl_record_users.rows.item(0).USERS_FIRST_NAME + " " + wl_record_users.rows.item(0).USERS_LAST_NAME
-            choose_profil.x = 0
+            main_support.init_env()
+            main_support.x = 0
         }
 
     }

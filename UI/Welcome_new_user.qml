@@ -52,7 +52,7 @@ Item {
                         id: avatar_profil
                         anchors.fill: parent
                         source: "../PIXMAPS/avatar.png"
-                        fillMode: Image.PreserveAspectFit
+                        fillMode: Image.PreserveAspectCrop
                     }
                 }
 
@@ -95,11 +95,9 @@ Item {
                     position: Camera.FrontFace
 
                     imageCapture {
-                        //resolution: Qt.size(320, 240)
+                        resolution: Qt.size(640, 480)
                         onImageCaptured: {
-                            photoPreview.source = preview
-                            console.log(montoto)
-
+                            avatar_profil.source = preview
                         }
 
                         onCaptureFailed: {
@@ -118,15 +116,6 @@ Item {
                     fillMode: Image.PreserveAspectCrop
                 }
 
-                Image {
-                    id: photoPreview
-                    x: 400
-                    y: 0
-                    width: 400
-                    height: 300
-                    visible: false
-                }
-
                 Button{
                     text: "Capture"
                     x: 100
@@ -134,9 +123,10 @@ Item {
                     width: 100
                     height: 32
                     onClicked: {
-                        //camera.imageCapture.capture()
-                        camera.imageCapture.captureToLocation(montoto & "/toto.jpg")
-                        console.log(camera.imageCapture.capturedImagePath)
+                        console.log(wg_img_path)
+                        var wl_path_to_capture = wg_img_path + "/JTN_Avatar.jpg"
+                        console.log(wl_path_to_capture)
+                        camera.imageCapture.captureToLocation(wl_path_to_capture)
                     }
                 }
 
